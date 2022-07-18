@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-@@ -0,0 +1,84 @@
-=======
->>>>>>> parent of f1b4f16 (Revert "mediapipe-hand")
 import cv2
 import mediapipe as mp
 import pafy
@@ -19,6 +15,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 #手語
 url ='https://www.youtube.com/watch?v=hPC7Nw8DcUo'
 #url ='https://www.youtube.com/watch?v=wYB9Vu282ZU'
+
 
 live = pafy.new(url)
 stream = live.getbest(preftype="mp4")
@@ -52,8 +49,8 @@ while cap.isOpened():
             # print(hand_landmarks)
             # 捉出 hand 座標 畫出 手部的連結線 , 並畫在 frame (CV2) 顯示出來
             mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS
-            ,mp_drawing_styles.get_default_hand_landmarks_style(),
-            mp_drawing_styles.get_default_hand_connections_style())
+                                        ,mp_drawing_styles.get_default_hand_landmarks_style(),
+                                         mp_drawing_styles.get_default_hand_connections_style())
 
             for id, lm in enumerate(hand_landmarks.landmark):
                 #把 偵測出來的 x, y 和 cv2 圖片大小 , 依比例算出 cx , cy
