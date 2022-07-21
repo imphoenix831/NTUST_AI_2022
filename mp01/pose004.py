@@ -55,7 +55,7 @@ while cap.isOpened():
         x2, y2 = poslist[14][1], poslist[14][2]
         x3, y3 = poslist[16][1], poslist[16][2]
 
-        # 右手肘的角度 ; 12: 右肩  14:右手臂; 16:右上臂
+        # 左手肘的角度 ; 11: 左肩  13:左手臂; 15:左上臂
         lx1, ly1 = poslist[11][1], poslist[11][2]
         lx2, ly2 = poslist[13][1], poslist[13][2]
         lx3, ly3 = poslist[15][1], poslist[15][2]
