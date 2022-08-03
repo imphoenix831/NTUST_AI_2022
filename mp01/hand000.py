@@ -9,17 +9,24 @@ cap = cv2.VideoCapture(0)
 while cap.isOpened():
     success, frame = cap.read()
 
+
     if not success:
         print("Ignoring empty camera frame.")
         continue
 
     image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    image = cv2.flip(frame,1 )  #filp: 0 #上下翻轉,  filp:1 #左右翻轉 filp:-1 #上下左右翻轉
+
     results = hands.process(image)
+
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
-            mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            #mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
-    cv2.imshow('hand000', frame)
+    #cv2.imshow('hand000', frame)
+    cv2.imshow('hand000', image)
+
     if cv2.waitKey(1) & 0xFF == 27:
         break
 cap.release()

@@ -35,6 +35,7 @@ while cap.isOpened():
         continue
 
     imgRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    #imgRGB  = cv2.flip(frame,1 )  #filp: 0 #上下翻轉,  filp:1 #左右翻轉 filp:-1 #上下左右翻轉
     results = pose.process(imgRGB)
     h, w, c = frame.shape
 
@@ -132,7 +133,7 @@ while cap.isOpened():
 
     cv2.imshow('MediaPipe Pose Workout', frame)
 
-    if cv2.waitKey(5) & 0xFF == 27:
+    if (cv2.waitKey(5) & 0xFF == 27) or (cv2.waitKey(5)==ord('q')):
         break
 cap.release()
 cv2.destroyAllWindows()

@@ -32,7 +32,14 @@ while cap.isOpened():
     else:
         bg_image = cv2.resize(bg_image, (w, h))
         if blur > 0:
-            bg_image = cv2.GaussianBlur(bg_image, (55, 55), 0)
+            #使用 OpenCV 的 GaussianBlur() 方法，可以使用高斯分佈進行模糊化的計算，指定模糊區域單位 ( 必須是大於 1 的奇數 ) 後就能產生不同程度的模糊效果，使用方法如下：
+            #cv2.GaussianBlur(image, ksize: 指定區域單位, SigmaxX: X方向的標準差, 預設 0 , SigmaY: y方向的標準差, 預設 0
+            #bg_image = cv2.GaussianBlur(bg_image, (55, 55), 0)
+
+            #bilateralFilter() 雙邊模糊
+            #使用 OpenCV 的 bilateralFilter() 方法，可以透過非線性的雙邊濾波器進行計算，讓影像模糊化的同時，也能夠保留影像內容的邊緣，使用方法如下：
+            bg_image = cv2.bilateralFilter(bg_image, 50, 50, 100)
+
             blur = 0
     output_image = np.where(condition, frame, bg_image)
 

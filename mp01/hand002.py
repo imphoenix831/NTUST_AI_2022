@@ -17,13 +17,15 @@ url ='https://www.youtube.com/watch?v=hPC7Nw8DcUo'
 #url ='https://www.youtube.com/watch?v=wYB9Vu282ZU'
 
 
+
+
 live = pafy.new(url)
 stream = live.getbest(preftype="mp4")
 
 cap = cv2.VideoCapture(stream.url)
 #write video format and size
 fourcc = cv2.VideoWriter_fourcc(*'MP4V')
-out = cv2.VideoWriter('手語.mp4', fourcc, 20, (1024, 680))
+out = cv2.VideoWriter('手語1.mp4', fourcc, 20, (1024, 680))
 
 #cap = cv2.VideoCapture(0)
 while cap.isOpened():
