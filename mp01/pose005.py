@@ -76,7 +76,7 @@ if __name__ == '__main__':
     # pose = mp.solutions.pose.Pose()
     # ENABLE_SEGMENTATION: 去背 ;
     pose = mp.solutions.pose.Pose(model_complexity=1, smooth_landmarks=True, smooth_segmentation=True,
-                                  enable_segmentation=True, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+                                  enable_segmentation=False, min_detection_confidence=0.8, min_tracking_confidence=0.5)
     # 連結 Pose 間的點, 若要畫半身, 可以自己建 半身的 list
 
     conn = mp.solutions.pose.POSE_CONNECTIONS
@@ -100,7 +100,11 @@ if __name__ == '__main__':
     # 盜墓筆記 The Lost Tomb Season1 第10集
     #url = 'https://www.youtube.com/watch?v=CfJYS7-QfYc'
     #跑步姿勢
-    url = 'https://www.youtube.com/watch?v=Myekr_6F2aw'
+    #url = 'https://www.youtube.com/watch?v=Myekr_6F2aw'
+
+    #陳式太極拳
+
+    url = 'https://youtu.be/7ra_tCmSq9g'
 
     live = pafy.new(url)
     stream = live.getbest(preftype="mp4")
@@ -109,12 +113,16 @@ if __name__ == '__main__':
     cap = cv2.VideoCapture(stream.url)
     # write video format and size
 
-    #fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    #fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-    #out = cv2.VideoWriter('pose4.mp4', fourcc, 15, (1024, 680))
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    w = cap.get(cv2.CAP_PROP_FRAME_WIDTH);
+    h = cap.get(cv2.CAP_PROP_FRAME_HEIGHT);
 
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    out = cv2.VideoWriter('output1.avi', fourcc, 20.0, (640, 480))
+    #fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+    #out = cv2.VideoWriter('Tues01.mp4', fourcc, 15, (1024, 680))
+    out = cv2.VideoWriter('Tues02.mp4', fourcc, 15, (int(w), int(h)))
+
+    #fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    #out = cv2.VideoWriter('output2.avi', fourcc, 20.0, (640, 480))
 
 
     while cap.isOpened():
@@ -161,7 +169,7 @@ if __name__ == '__main__':
 
 
             out.write(frame)
-            #cv2.imshow('MediaPipe Pose Workout', frame)
+            cv2.imshow('永和社區大學 陳式太極拳 陳駿巃師父 ', frame)
 
             key = cv2.waitKey(10)
             #print('key:'.format(key))
